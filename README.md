@@ -3,7 +3,7 @@
 This is a centralized formation trajectory planning project for multiple nonholonomic robots collaboratively transport objects using a deformable sheet in unstructured environments.
 
 <p align="center">
-  <img src="https://github.com/SimonZhang1999/ego_swarm_vvcm/blob/main/memo/rviz_demo.mp4" alt="rviz_demo" width="600">
+  <img src="https://github.com/SimonZhang1999/ego_swarm_vvcm/blob/main/memo/rviz_demo.gif" alt="rviz_demo" width="600">
 </p>
 
 Currently, the project mainly supports:
