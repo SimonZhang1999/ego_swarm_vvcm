@@ -1,6 +1,6 @@
-# Legged Swarm Planner Centralized
+# Ego-Planner-Swarm-VVCM 
 
-This is a centralized formation trajectory planning and RViz validation project for multiple wheeled-legged robots. The project keeps the front-end planning and B-spline trajectory representation from EGO-Swarm/EGO-Planner, removes the UAV simulation and aircraft model, and uses cuboid wheeled-legged robots, planar ground motion, and centralized back-end trajectory optimization to test multi-robot formation transport.
+This is a centralized formation trajectory planning project for multiple nonholonomic robots collaboratively transport objects using a deformable sheet in unstructured environments.
 
 Currently, the project mainly supports:
 
@@ -9,7 +9,6 @@ Currently, the project mainly supports:
 - Trajectory constraints in the 2D plane; robots cannot bypass obstacles through the z direction.
 - Sheet-size constraints, topological directed-distance constraints, inter-robot collision avoidance, obstacle avoidance, and velocity/acceleration constraints.
 - VVCM-based object position estimation for a 4-robot rectangular mesh, with rods, mesh, connection lines, and the object sphere visualized in RViz.
-- For 3/5 robots, a geometric sagging model is used to estimate the height of the object in the mesh, so the object height in RViz changes with formation stretching.
 - Object obstacle-clearance iteration: if the object inside the mesh does not have enough height clearance when crossing obstacles, the corresponding lower bounds of edge distances are automatically increased and the optimizer is re-run.
 - A reserved ZMQ/protobuf communication bridge for future integration with the localization/point-cloud host and the real robot velocity-control chain.
 
@@ -236,50 +235,12 @@ REAL_ROBOT_COMMUNICATION_SPEC.txt
 
 Note: the simulation demo uses `enable_zmq:=false` by default. During real deployment, the simulated world-cloud publisher and the simulated executor's odometry override should be disabled, and the system should instead use real localization feedback and real robot velocity control.
 
-## 9. FAQ
-
-### 9.1 A* reports that the start or goal is outside the map
-
-This means the start or target point is outside the planning map boundary. You can enlarge the map:
-
-```bash
-ros2 launch legged_swarm_sim centralized_swarm_demo.launch.py \
-  map_size_x:=30.0 map_size_y:=20.0
-```
-
-You can also reduce the formation size or make sure the RViz target point is not placed near the map boundary.
-
-### 9.2 No VVCM solution is visible after changing the number of robots to 3 or 5
-
-The original VVCM solver only works for a 4-robot rectangular mesh. For 3/5 robots, the project uses a shared geometric sagging model to estimate the RViz object-sphere height and perform object obstacle-clearance iteration, but it does not publish a real VVCM solution.
-
-### 9.3 Planning fails when setting the original start point as the new goal
-
-First check whether the goal point is inside the valid map range and whether all formation vertices can be placed inside the map. The `goal_boundary_margin` parameter in the launch file clips the goal center near the boundary.
-
-## 10. Directory Structure
-
-```text
-src/legged_swarm_sim/
-  launch/centralized_swarm_demo.launch.py     # Main demo launch
-  config/centralized_optimizer.yaml           # Centralized optimization parameters
-  config/vvcm.yaml                            # VVCM and object visualization parameters
-  rviz/centralized_swarm.rviz                 # RViz configuration
-  src/robot_grid_astar_frontend.cpp           # Independent A* front-end
-  src/centralized_trajectory_optimizer.cpp    # Centralized trajectory optimization
-  src/centralized_joint_trajectory_executor.cpp
-  src/vvcm_object_pose_node.cpp               # VVCM/geometric object estimation and visualization
-  src/topology_net_visualizer.cpp             # Topology-net visualization
-  src/swarm_zmq_bridge.cpp                    # ZMQ/protobuf bridge
-  third_party/vvcm/                           # Vendored VVCM FK source
-```
-
-## 11. Acknowledgements
+## 9. Acknowledgements
 
 This project is based on and refers to the following open-source projects and works:
 
 - [ZJU-FAST-Lab/ego-planner-swarm](https://github.com/ZJU-FAST-Lab/ego-planner-swarm): provides the EGO-Swarm/EGO-Planner planning framework, B-spline trajectory representation, and swarm planning foundation.
 - [MorningFrog/VVCM](https://github.com/MorningFrog/VVCM): provides a VVCM forward-kinematics implementation for estimating the 3D position of an object in a flexible mesh/sheet from four robot connection points. This project vendors its source code into `src/legged_swarm_sim/third_party/vvcm` and preserves its Apache-2.0 license.
-- IEEE paper: [document 11128313](https://ieeexplore.ieee.org/abstract/document/11128313). The flexible-mesh transport, four-robot connection-point-based object position estimation, and obstacle-crossing height-constraint design in this project are inspired by ideas from this paper.
+- IEEE paper: [document 11128313](https://ieeexplore.ieee.org/abstract/document/11128313). This project is inspired by ideas from this paper.
 
 If you use the EGO-Swarm/EGO-Planner or VVCM-related parts of this project, please also comply with the licenses of the corresponding projects and cite the original authors' work in your paper or project.
