@@ -1,0 +1,14 @@
+/**:
+  ros__parameters:
+    update_rate: 20.0
+    odom_timeout: 0.5
+    max_odom_skew: 0.000001
+    sheet.length: 3.8
+    sheet.width: 3.4
+    rod.base_offset_z: 0.175
+    rod.height: 2.4
+    rod.diameter: 0.08
+    object.diameter: 0.45
+    visual.cable_width: 0.025
+    visual.sheet_edge_width: 0.035
+    visual.path_history_length: 1200

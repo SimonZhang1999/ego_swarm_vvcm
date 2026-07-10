@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package swarm;
+
+// ── 共享基础类型 ──────────────────────────────────────────
+
+message Pose {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double qx = 4;
+  double qy = 5;
+  double qz = 6;
+  double qw = 7;
+}
+
+// ── 轻量广播：每个 robot 定期发布 ─────────────────────────
+// 对应 zsi_swarm 中 /{robot_id}/keyframe 的「头部」信息
+// —— 只有 descriptor + pose，不含图像/点云大块数据
+
+message DescriptorAnnounce {
+  string robot_id = 1;
+  uint64 timestamp_ns = 2;
+  repeated float global_desc = 3;   // CosPlace 全局描述子 (~2048 维)
+  Pose pose = 4;
+  uint64 keyframe_id = 5;           // 放到 5，避免与 Heartbeat.timestamp_ns(=2) 重叠
+}
+
+// ── 按需请求/响应：拉取完整关键帧 ──────────────────────────
+// 对应 AgentBase::getLocalKeyframeById()
+
+message KeyframeRequest {
+  string requester_id = 1;
+  uint64 keyframe_id = 2;
+}
+
+message KeyframeReply {
+  string robot_id = 1;
+  uint64 keyframe_id = 2;
+  bytes image_jpeg = 3;      // 压缩图像（真实场景放 JPEG）
+  bytes pointcloud_bin = 4;  // 点云（真实场景放 PCL 序列化）
+  Pose pose = 5;
+}
+
+// ── 心跳 / 存活检测 ──────────────────────────────────────
+
+message Heartbeat {
+  string robot_id = 1;
+  uint64 timestamp_ns = 2;
+  enum Status {
+    ONLINE = 0;
+    BUSY = 1;
+    OFFLINE = 2;
+  }
+  Status status = 3;
+  string message = 4;
+}
+
+// ── 分布式导航状态广播 ─────────────────────────────────────
+// 每个机器人周期性广播本机全局位姿、短期预测轨迹、可选全局点云。
+// 接收端根据 peer 轨迹构造动态障碍物，并本地触发 ego_planner 重规划。
+
+message TrajectoryPoint {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double yaw = 4;
+  double t_from_start = 5;
+}
+
+message RobotStateAnnounce {
+  string robot_id = 1;
+  uint64 timestamp_ns = 2;
+  Pose pose = 3;
+  repeated TrajectoryPoint trajectory = 4;
+  bytes pointcloud_bin = 5;     // [uint32 count][float32 xyz * count], global frame
+  double safety_radius = 6;     // robot body + controller buffer
+  double desired_distance = 7;  // soft inter-robot spacing target
+}

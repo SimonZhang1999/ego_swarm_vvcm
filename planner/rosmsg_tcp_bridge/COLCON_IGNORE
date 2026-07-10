@@ -1,0 +1,1 @@
+Disabled for the legged swarm planning harness. Inter-robot state exchange is handled by legged_swarm_sim/swarm_zmq_bridge with protobuf over ZMQ.

@@ -1,0 +1,1 @@
+Disabled for the legged swarm planning harness. Detection/perception is replaced by known world-frame robot poses and point clouds.

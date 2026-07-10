@@ -1,0 +1,1 @@
+Disabled for the legged swarm planning harness. The new demo uses rectangular markers, known odometry, and world-frame point clouds instead of the UAV simulator stack.

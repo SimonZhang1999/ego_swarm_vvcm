@@ -1,0 +1,6 @@
+/**:
+  ros__parameters:
+    "optimization/formation_topology/enabled": true
+    "optimization/formation_topology/weight": 0.35
+    "optimization/formation_topology/edge_weight": 1.0
+    "optimization/formation_topology/diag_weight": 0.25

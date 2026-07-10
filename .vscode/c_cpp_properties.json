@@ -1,0 +1,29 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/simonzhang/legged_swarm_planner/install/bspline_opt/include/**",
+        "/home/simonzhang/legged_swarm_planner/install/traj_utils/include/**",
+        "/home/simonzhang/legged_swarm_planner/install/path_searching/include/**",
+        "/home/simonzhang/legged_swarm_planner/install/plan_env/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/simonzhang/legged_swarm_planner/src/planner/bspline_opt/include/**",
+        "/home/simonzhang/legged_swarm_planner/src/planner/path_searching/include/**",
+        "/home/simonzhang/legged_swarm_planner/src/planner/plan_env/include/**",
+        "/home/simonzhang/legged_swarm_planner/src/planner/plan_manage/include/**",
+        "/home/simonzhang/legged_swarm_planner/src/planner/traj_utils/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}

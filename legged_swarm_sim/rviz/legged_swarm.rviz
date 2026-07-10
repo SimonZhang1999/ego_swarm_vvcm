@@ -1,0 +1,254 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /World Cloud1
+        - /Robot Bodies1
+        - /Planner Paths1
+    Tree Height: 600
+  - Class: rviz_common/Tool Properties
+    Expanded:
+      - /2D Goal Pose1
+    Name: Tool Properties
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Plane: XY
+      Plane Cell Count: 40
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 0.6
+      Class: rviz_default_plugins/PointCloud2
+      Color: 120; 120; 120
+      Color Transformer: FlatColor
+      Enabled: true
+      Name: World Cloud
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.08
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /world/cloud
+      Use Fixed Frame: true
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Obstacle Boxes
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /world/obstacle_markers
+      Value: true
+    - Alpha: 0.35
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 80; 80
+      Color Transformer: FlatColor
+      Enabled: true
+      Name: Robot 0 Inflated Map
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.06
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_0/grid/occupancy_inflate
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 0.35
+      Class: rviz_default_plugins/PointCloud2
+      Color: 80; 170; 255
+      Color Transformer: FlatColor
+      Enabled: true
+      Name: Robot 1 Inflated Map
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.06
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_1/grid/occupancy_inflate
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 0.35
+      Class: rviz_default_plugins/PointCloud2
+      Color: 80; 220; 120
+      Color Transformer: FlatColor
+      Enabled: true
+      Name: Robot 2 Inflated Map
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.06
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_2/grid/occupancy_inflate
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 0.35
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 190; 80
+      Color Transformer: FlatColor
+      Enabled: true
+      Name: Robot 3 Inflated Map
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.06
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_3/grid/occupancy_inflate
+      Use Fixed Frame: true
+      Value: true
+    - Alpha: 0.55
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 40
+      Color Transformer: FlatColor
+      Enabled: true
+      Name: Robot 0 ZMQ Peer Obstacles
+      Position Transformer: XYZ
+      Size (Pixels): 3
+      Size (m): 0.08
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_0/peer_obstacles_cloud
+      Use Fixed Frame: true
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: Robot Bodies
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/robot_bodies
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: Topology Net
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/topology_net
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: Robot Planned Paths
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/robot_planned_paths
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Formation Goals
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/formation_goal_markers
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: Planner Goals
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/planner_goal_points
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: Planner Paths
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/optimal_paths
+      Value: true
+    - Class: rviz_default_plugins/Marker
+      Enabled: true
+      Name: ZMQ Peer States
+      Topic:
+        Depth: 20
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /swarm/zmq_peer_state_markers
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 32; 34; 36
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/SetInitialPose
+      Topic:
+        Value: /initialpose
+    - Class: rviz_default_plugins/SetGoal
+      Topic:
+        Value: /move_base_simple/goal
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 22
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Name: Current View
+      Pitch: 0.95
+      Target Frame: <Fixed Frame>
+      Yaw: 0.0
+    Saved: ~
+Window Geometry:
+  Height: 900
+  Width: 1400
