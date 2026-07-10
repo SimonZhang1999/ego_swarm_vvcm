@@ -2,14 +2,17 @@
 
 This is a centralized formation trajectory planning project for multiple nonholonomic robots collaboratively transport objects using a deformable sheet in unstructured environments.
 
+<p align="center">
+  <img src="https://github.com/HyPAIR/CPDOT/blob/main/formation_planner/fig/prob_overview.png" alt="rviz_demo" width="600">
+</p>
+
 Currently, the project mainly supports:
 
 - Automatic configuration of formations, topics, A* front-ends, centralized optimization variables, and RViz visualization for 3, 4, and 5 robots.
 - An independent A* front-end for each robot, with a centralized back-end that synchronously optimizes all robot trajectories.
-- Trajectory constraints in the 2D plane; robots cannot bypass obstacles through the z direction.
 - Sheet-size constraints, topological directed-distance constraints, inter-robot collision avoidance, obstacle avoidance, and velocity/acceleration constraints.
-- VVCM-based object position estimation for a 4-robot rectangular mesh, with rods, mesh, connection lines, and the object sphere visualized in RViz.
-- Object obstacle-clearance iteration: if the object inside the mesh does not have enough height clearance when crossing obstacles, the corresponding lower bounds of edge distances are automatically increased and the optimizer is re-run.
+- VVCM-based object position estimation for any number of robots, with rods, mesh, connection lines, and the object sphere visualized in RViz.
+- Object obstacle-clearance iteration: if the object inside the sheet does not have enough height clearance when crossing obstacles, the corresponding lower bounds of edge distances are automatically increased and the optimizer is re-run.
 - A reserved ZMQ/protobuf communication bridge for future integration with the localization/point-cloud host and the real robot velocity-control chain.
 
 ## 1. Environment Dependencies
@@ -244,3 +247,20 @@ This project is based on and refers to the following open-source projects and wo
 - IEEE paper: [document 11128313](https://ieeexplore.ieee.org/abstract/document/11128313). This project is inspired by ideas from this paper.
 
 If you use the EGO-Swarm/EGO-Planner or VVCM-related parts of this project, please also comply with the licenses of the corresponding projects and cite the original authors' work in your paper or project.
+
+## 10. Citation
+
+If you find this work useful, please cite ([paper](https://ieeexplore.ieee.org/document/11128313)):
+
+```bibtex
+@INPROCEEDINGS{11128313,
+  author={Zhang, Weijian and Street, Charlie and Mansouri, Masoumeh},
+  booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  title={Multi-Nonholonomic Robot Object Transportation with Obstacle Crossing Using a Deformable Sheet}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={7349-7355},
+  keywords={Limiting;Navigation;Transportation;Probabilistic logic;Hardware;Planning;Iterative methods;Robots;Trajectory optimization;Contracts},
+  doi={10.1109/ICRA55743.2025.11128313}}
+```
